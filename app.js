@@ -16,14 +16,18 @@ app.factory("Profile", function($firebaseObject){
 
 app.controller("ProfileCtrl", function($scope, Profile) {
     // put our profile in the scope for use in DOM
-    $scope.profile = Profile("physicsmarie");
+    //Three way binding
+    Profile("physicsmarie").$bindTo($scope, "profile")
+    
+     //$save function of object
+    //  $scope.profile = Profile("physicsmarie");
 
-    // calling $save() on the synchronized object syncs all data back to our database
-    $scope.saveProfile = function() {
-      $scope.profile.$save().then(function() {
-        alert('Profile saved!');
-      }).catch(function(error) {
-        alert('Error!');
-      });
-    };
+    // // calling $save() on the synchronized object syncs all data back to our database
+    // $scope.saveProfile = function() {
+    //   $scope.profile.$save().then(function() {
+    //     alert('Profile saved!');
+    //   }).catch(function(error) {
+    //     alert('Error!');
+    //   });
+    // };
   });
